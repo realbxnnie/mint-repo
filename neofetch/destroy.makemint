@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Metadata
+NAME="neofetch";
+VERSION="7.10";
+SOURCE="https://github.com/dylanaraps/neofetch";
+INSTALLATION_PATH="/usr/bin";
+ARCHITECTURE="amd64";
+
+# Functions
+prepare() {
+    if [[ -f $INSTALLATION_PATH"/"$NAME ]]; then
+        :
+    else
+        printf "\e[0;31m$NAME is not installed! Aborting...\n\e[0;m";
+        exit 1;
+    fi
+}
+
+uninstall() {
+    sudo rm -rf /usr/bin/neofetch
+	sudo rm -rf /usr/share/man/man1/neofetch.1*
+    if [[ -f $INSTALLATION_PATH"/"$NAME ]]; then
+        printf "\e[0;31mUnistallation failed!\n\e[0;m";
+    else
+        printf "\e[0;32mUninstallation success!\n\e[0;m";
+    fi
+
+    rm -rf /tmp/$NAME;
+}
+
+prepare && uninstall;
