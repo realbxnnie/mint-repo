@@ -31,14 +31,13 @@ prepare() {
 }
 
 build() {
-    :
-}
-
-install() {
     mkdir -p build;
     cd build;
     cmake ..;
     cmake --build . --target fastfetch;
+}
+
+install() {
     sudo cp fastfetch $INSTALLATION_PATH"/"$NAME;
 
     if [[ -f $INSTALLATION_PATH"/"$NAME ]]; then
